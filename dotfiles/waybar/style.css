@@ -1,0 +1,162 @@
+@define-color primary rgb(157, 212, 157);
+@define-color surface-tint rgb(157, 212, 157);
+@define-color on-primary rgb(3, 57, 18);
+@define-color primary-container rgb(31, 80, 39);
+@define-color on-primary-container rgb(185, 240, 184);
+@define-color secondary rgb(184, 204, 181);
+@define-color on-secondary rgb(36, 52, 36);
+@define-color secondary-container rgb(58, 75, 57);
+@define-color on-secondary-container rgb(212, 232, 208);
+@define-color tertiary rgb(161, 206, 214);
+@define-color on-tertiary rgb(0, 54, 60);
+@define-color tertiary-container rgb(31, 77, 84);
+@define-color on-tertiary-container rgb(188, 235, 242);
+@define-color error rgb(255, 180, 171);
+@define-color on-error rgb(105, 0, 5);
+@define-color error-container rgb(147, 0, 10);
+@define-color on-error-container rgb(255, 218, 214);
+@define-color background rgb(16, 21, 16);
+@define-color on-background rgb(224, 228, 219);
+@define-color surface rgb(16, 21, 16);
+@define-color on-surface rgb(224, 228, 219);
+@define-color surface-variant rgb(66, 73, 64);
+@define-color on-surface-variant rgb(194, 201, 189);
+@define-color outline rgb(140, 147, 137);
+@define-color outline-variant rgb(66, 73, 64);
+@define-color shadow rgb(0, 0, 0);
+@define-color scrim rgb(0, 0, 0);
+@define-color inverse-surface rgb(224, 228, 219);
+@define-color inverse-on-surface rgb(45, 50, 44);
+@define-color inverse-primary rgb(56, 105, 60);
+@define-color primary-fixed rgb(185, 240, 184);
+@define-color on-primary-fixed rgb(0, 33, 7);
+@define-color primary-fixed-dim rgb(157, 212, 157);
+@define-color on-primary-fixed-variant rgb(31, 80, 39);
+@define-color secondary-fixed rgb(212, 232, 208);
+@define-color on-secondary-fixed rgb(15, 31, 16);
+@define-color secondary-fixed-dim rgb(184, 204, 181);
+@define-color on-secondary-fixed-variant rgb(58, 75, 57);
+@define-color tertiary-fixed rgb(188, 235, 242);
+@define-color on-tertiary-fixed rgb(0, 31, 36);
+@define-color tertiary-fixed-dim rgb(161, 206, 214);
+@define-color on-tertiary-fixed-variant rgb(31, 77, 84);
+@define-color surface-dim rgb(16, 21, 16);
+@define-color surface-bright rgb(54, 58, 53);
+@define-color surface-container-lowest rgb(11, 15, 11);
+@define-color surface-container-low rgb(24, 29, 24);
+@define-color surface-container rgb(28, 33, 27);
+@define-color surface-container-high rgb(39, 43, 38);
+@define-color surface-container-highest rgb(49, 54, 48);
+
+@define-color primary-hover rgb(144.1875441447, 198.5134946724, 144.815428211);
+@define-color secondary-hover rgb(170.9272721176, 190.684575443, 168.1876838633);
+@define-color error-hover rgb(242.8869449758, 166.0548775867, 156.9530889643);
+
+* {
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+window#waybar {
+    background: transparent;
+    color: @on-surface;
+    font-family: "FiraCode Nerd Font";
+    font-weight: 400;
+
+    padding: 8px;
+}
+
+tooltip {
+    background: @surface-container;
+    border: 1px solid @outline;
+    border-radius: 12px;
+    padding: 12px 16px;
+}
+
+tooltip label {
+    color: @on-surface-variant;
+    font-family: "FiraCode Nerd Font";
+    font-weight: 400;
+}
+
+label.module {
+    transition: all 0.25s;
+    padding: 0 10px;
+    margin: 0 4px;
+
+    background: @surface;
+    opacity: 0.85;
+    border: none;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-radius: 12px;
+    outline: none;
+}
+
+label.module:hover {
+    background: @surface-bright;
+}
+
+.modules-left > widget:first-child > label.module {
+    margin-left: 0;
+}
+
+.modules-right > widget:last-child > label.module {
+    margin-right: 0;
+}
+
+#wireplumber:not(.muted) {
+    background: @secondary;
+    color: @on-secondary;
+}
+
+#wireplumber:not(.muted):hover {
+    background: @secondary-hover;
+}
+
+window#waybar #network.disabled, window#waybar #network.disconnected {
+    background: @error;
+    color: @on-error;
+}
+
+#hardware, #workspaces {
+    background: @surface;
+    opacity: 0.85;
+    padding: 4px;
+    border-radius: 12px;
+}
+
+#hardware label.module, #workspaces button {
+    background: @surface-container;
+    color: inherit;
+
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    margin: 4px;
+    padding: 4px 8px;
+
+    transition: all 0.25s;
+}
+
+#hardware label.module:hover, #workspaces button:not(.active):hover {
+    background: @surface-container-high;
+}
+
+#workspaces button.active {
+    background: @primary;
+    color: @on-primary;
+}
+
+#workspaces button.active:hover {
+    background: @primary-hover;
+}
+
+window#waybar #temperature.critical {
+    background: @error;
+    color: @on-error;
+}
+
+window#waybar #temperature.critical:hover {
+    background: @error-hover
+}
