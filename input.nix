@@ -3,6 +3,7 @@
     i18n.inputMethod = {
         enable = true;
         type = "fcitx5";
+
         fcitx5.addons = with pkgs; [
             # important stuff
             fcitx5-gtk
@@ -14,6 +15,7 @@
             # input methods
             fcitx5-rime
             rime-data
+            fcitx5-mozc
 
             # theme
             fcitx5-fluent
@@ -87,7 +89,7 @@
                 "Name" = "rime";
             };
             "Groups/0/Items/2" = {
-                "Name" = "keyboard-jp";
+                "Name" = "mozc";
             };
         };
         fcitx5.settings.addons.classicui.globalSection = {

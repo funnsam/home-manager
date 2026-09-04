@@ -17,39 +17,16 @@ in {
         style.name = "Fusion";
     };
 
-    nixpkgs.config.allowUnfree = true;
-    home.packages = with pkgs; [
-        # compositor stuff
-        bibata-cursors
-        hyprpaper
+    xdg.portal = {
+        enable = true;
+        extraPortals = with pkgs; [
+            xdg-desktop-portal-hyprland
+            xdg-desktop-portal-gtk
+        ];
+        config.common.default = [ "hyprland" "gtk" ];
+    };
 
-        # status bar stuff
-        waybar
-        playerctl
-
-        # utils used in hotkeys
-        grim
-        jq
-        wl-clipboard
-
-        # useful stuff triggered by hotkeys
-        dunst
-        ghostty
-        hyprpicker
-        nemo
-        tofi
-
-        # ui config stuff
-        fluent-gtk-theme
-
-        # gui apps
-        discord
-
-        # games
-        steam
-        ckan
-        prismlauncher
-    ];
+    home.shell.enableZshIntegration = true;
     programs.zsh = {
         enable = true;
         oh-my-zsh = {
@@ -61,6 +38,71 @@ in {
             ];
         };
         initContent = "fastfetch";
+        shellAliases = {
+            zigb = "zig build -fincremental";
+            zigstd = "zig std --port 3000";
+        };
+    };
+
+    programs.direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+    };
+
+    nixpkgs.config.allowUnfree = true;
+    home.packages = with pkgs; [
+        # compositor stuff
+        bibata-cursors
+        hyprpaper
+
+        # status bar stuff
+        dunst
+        waybar
+        playerctl
+
+        # utils used in hotkeys
+        grim
+        jq
+        wl-clipboard
+
+        # useful stuff triggered by hotkeys
+        ghostty
+        hyprpicker
+        nemo
+
+        # cli stuff used in neovim
+        ripgrep
+        tinyxxd
+
+        # ui config stuff
+        fluent-gtk-theme
+
+        # gui apps
+        discord
+        inkscape
+        feh
+        gimp
+        gparted
+
+        # games
+        ckan
+        osu-lazer-bin
+        prismlauncher
+
+        # hw dev
+        freecad
+        kicad
+
+        # sw dev
+        android-studio
+        android-tools
+    ];
+    programs.tofi.enable = true;
+    programs.obs-studio = {
+        enable = true;
+        plugins = with pkgs.obs-studio-plugins; [
+            wlrobs
+        ];
     };
 
     home.file = {
@@ -80,6 +122,23 @@ in {
 
     home.sessionVariables = {
         EDITOR = "nvim";
+    };
+
+    systemd.user.services.open-link = {
+        Unit = {
+            Description = "Open Link server service";
+            After = [ "network-online.target" ];
+            Wants = [ "network-online.target" ];
+        };
+        Service = {
+            ExecStart = "${pkgs.writeShellScriptBin "run-service" ''
+                exec ${pkgs.nix}/bin/nix run github:funnsam/openlink
+            ''}/bin/run-service";
+            Restart = "on-failure";
+        };
+        Install = {
+            WantedBy = [ "default.target" ];
+        };
     };
 
     programs.home-manager.enable = true;

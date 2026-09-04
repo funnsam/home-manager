@@ -60,8 +60,8 @@ in {
                 format-ethernet = "  {bandwidthTotalBits}";
                 format-disconnected = " ";
                 format = "";
-                tooltip-format-wifi = "  {signalStrength}%\n  {bandwidthUpBits}\n  {bandwidthDownBits}";
-                tooltip-format-ethernet = "  {bandwidthUpBits}\n  {bandwidthDownBits}";
+                tooltip-format-wifi = "{ipaddr}\n  {signalStrength}%\n  {bandwidthUpBits}\n  {bandwidthDownBits}";
+                tooltip-format-ethernet = "{ipaddr}\n  {bandwidthUpBits}\n  {bandwidthDownBits}";
                 max-length = 50;
                 interval = 5;
             };
