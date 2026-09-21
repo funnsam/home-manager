@@ -5,7 +5,7 @@ in {
     home.username = "funnsam";
     home.homeDirectory = "/home/funnsam";
 
-    imports = [ ./input.nix ./waybar.nix ];
+    imports = [ ./input.nix ./waybar.nix ./copyparty.nix ];
 
     gtk = {
         enable = true;
@@ -96,6 +96,7 @@ in {
         # sw dev
         android-studio
         android-tools
+        jetbrains.idea
     ];
     programs.tofi.enable = true;
     programs.obs-studio = {
